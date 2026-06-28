@@ -1,0 +1,27 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vanne d'arrosage Tuya Local",
+        "description": "Configuration de la vanne via passerelle tinytuya",
+        "data": {
+          "name": "Nom de la vanne",
+          "device_id": "Device ID (passerelle)",
+          "ip_address": "Adresse IP de la passerelle",
+          "local_key": "Clé locale (local_key)",
+          "node_id": "Node ID de la vanne (laisser vide si connexion directe)",
+          "protocol_version": "Version du protocole",
+          "default_duration": "Durée d'arrosage par défaut (secondes)"
+        }
+      }
+    },
+    "error": {
+      "device_id_required": "Le Device ID est requis",
+      "ip_required": "L'adresse IP est requise",
+      "local_key_required": "La clé locale est requise"
+    },
+    "abort": {
+      "already_configured": "Cet appareil est déjà configuré"
+    }
+  }
+}

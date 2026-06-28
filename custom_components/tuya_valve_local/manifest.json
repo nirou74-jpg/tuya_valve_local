@@ -1,0 +1,11 @@
+{
+  "domain": "tuya_valve_local",
+  "name": "Tuya Valve Local (vanne d'arrosage)",
+  "version": "1.0.0",
+  "config_flow": true,
+  "documentation": "https://github.com/nirou74-jpg/tuya_valve_local",
+  "issue_tracker": "https://github.com/nirou74-jpg/tuya_valve_local/issues",
+  "requirements": ["tinytuya==1.13.1"],
+  "iot_class": "local_polling",
+  "codeowners": ["@nirou74-jpg"]
+}
