@@ -113,6 +113,8 @@ class TuyaValveCoordinator(DataUpdateCoordinator):
             await self.async_request_refresh()
             await asyncio.sleep(2)
             await self.async_request_refresh()
+            await asyncio.sleep(2)
+            await self.async_request_refresh()
         else:
             await asyncio.sleep(1)
             await self.async_request_refresh()

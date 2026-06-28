@@ -1,7 +1,7 @@
 {
   "domain": "tuya_valve_local",
   "name": "Tuya Valve Local (vanne d'arrosage)",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "config_flow": true,
   "documentation": "https://github.com/nirou74-jpg/tuya_valve_local",
   "issue_tracker": "https://github.com/nirou74-jpg/tuya_valve_local/issues",
