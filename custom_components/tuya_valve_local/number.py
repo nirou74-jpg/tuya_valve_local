@@ -31,12 +31,13 @@ class ValveDurationNumber(CoordinatorEntity, NumberEntity, RestoreEntity):
     """Durée d'arrosage en minutes."""
 
     _attr_native_min_value = 1
-    _attr_native_max_value = 1440   # 24h max
+    _attr_native_max_value = 1440
     _attr_native_step      = 1
     _attr_native_unit_of_measurement = UnitOfTime.MINUTES
     _attr_mode             = NumberMode.BOX
     _attr_entity_category  = EntityCategory.CONFIG
     _attr_icon             = "mdi:timer-water"
+    _attr_suggested_display_precision = 0
 
     def __init__(self, coordinator: TuyaValveCoordinator, entry: ConfigEntry) -> None:
         super().__init__(coordinator)

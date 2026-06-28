@@ -84,6 +84,7 @@ class AccumTimeSensor(ValveBaseSensor):
     _attr_native_unit_of_measurement = UnitOfTime.SECONDS
     _attr_entity_category = EntityCategory.DIAGNOSTIC
     _attr_icon = "mdi:timer-sand"
+    _attr_suggested_display_precision = 0
 
     def __init__(self, coordinator, entry):
         super().__init__(coordinator, entry, "accum_time", "Temps cumulé", DPS_ACCUM_TIME)
@@ -99,6 +100,7 @@ class LastTimeSensor(ValveBaseSensor):
     _attr_native_unit_of_measurement = UnitOfTime.SECONDS
     _attr_entity_category = EntityCategory.DIAGNOSTIC
     _attr_icon = "mdi:history"
+    _attr_suggested_display_precision = 0
 
     def __init__(self, coordinator, entry):
         super().__init__(coordinator, entry, "last_time", "Dernier usage", DPS_LAST_TIME)
@@ -113,6 +115,7 @@ class CountdownSensor(ValveBaseSensor):
     _attr_device_class  = SensorDeviceClass.DURATION
     _attr_native_unit_of_measurement = UnitOfTime.SECONDS
     _attr_icon = "mdi:timer-outline"
+    _attr_suggested_display_precision = 0
 
     def __init__(self, coordinator, entry):
         super().__init__(coordinator, entry, "countdown", "Countdown", DPS_COUNTDOWN)
