@@ -56,16 +56,13 @@ def _make_device(entry: ConfigEntry) -> tinytuya.Device:
     node_id   = entry.data.get(CONF_NODE_ID, "").strip()
 
     if node_id:
-        d = tinytuya.Device(device_id, ip, local_key, dev_type="subdevice")
-        d.set_version(version)
-        d.set_socketTimeout(5)
-        d.set_dpsUsed({"1": None})
-        d.node_id = node_id
+        # Passerelle BLE : utilise Device standard avec cid (node_id)
+        d = tinytuya.Device(device_id, ip, local_key, cid=node_id)
     else:
         d = tinytuya.Device(device_id, ip, local_key)
-        d.set_version(version)
-        d.set_socketTimeout(5)
 
+    d.set_version(version)
+    d.set_socketTimeout(5)
     return d
 
 
