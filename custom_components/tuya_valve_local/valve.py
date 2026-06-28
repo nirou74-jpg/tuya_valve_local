@@ -98,14 +98,14 @@ class TuyaValveEntity(CoordinatorEntity, ValveEntity):
         return int(self._entry.data.get(CONF_DEFAULT_DUR, DEFAULT_DURATION_S))
 
     async def async_open_valve(self) -> None:
-        """Ouvre la vanne : envoie DP11 (countdown) + DP1 (True) simultanément."""
+        """Ouvre la vanne : envoie DP11 (countdown) puis DP1 (True)."""
         duration = self._get_duration()
         _LOGGER.debug("Ouverture vanne: countdown=%ds", duration)
-        await self.coordinator.async_send_dps({
-            DPS_COUNTDOWN: duration,
-            DPS_VALVE:     True,
-        })
+        # Envoie d'abord DP11 seul
+        await self.coordinator.async_send_dps({DPS_COUNTDOWN: duration})
+        # Puis DP1 avec refresh rapide
+        await self.coordinator.async_send_dps({DPS_VALVE: True}, quick_refresh=True)
 
     async def async_close_valve(self) -> None:
-        """Ferme la vanne : DP1 = False."""
-        await self.coordinator.async_send_dps({DPS_VALVE: False})
+        """Ferme la vanne : DP1 = False avec refresh rapide."""
+        await self.coordinator.async_send_dps({DPS_VALVE: False}, quick_refresh=True)

@@ -93,11 +93,10 @@ class TuyaValveCoordinator(DataUpdateCoordinator):
         except Exception as err:
             raise UpdateFailed(f"Erreur lecture vanne: {err}") from err
 
-    async def async_send_dps(self, dps: dict) -> None:
+    async def async_send_dps(self, dps: dict, quick_refresh: bool = False) -> None:
         """Envoie plusieurs DPS en une seule commande."""
         def _send():
             d = _make_device(self.entry)
-            # Lecture préalable pour initialiser la session
             d.status()
             payload = d.generate_payload(
                 tinytuya.CONTROL,
@@ -109,5 +108,11 @@ class TuyaValveCoordinator(DataUpdateCoordinator):
 
         import asyncio
         await self.hass.async_add_executor_job(_send)
-        await asyncio.sleep(1)
-        await self.async_request_refresh()
+        if quick_refresh:
+            await asyncio.sleep(0.5)
+            await self.async_request_refresh()
+            await asyncio.sleep(2)
+            await self.async_request_refresh()
+        else:
+            await asyncio.sleep(1)
+            await self.async_request_refresh()

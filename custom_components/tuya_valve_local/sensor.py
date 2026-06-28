@@ -88,6 +88,11 @@ class AccumTimeSensor(ValveBaseSensor):
     def __init__(self, coordinator, entry):
         super().__init__(coordinator, entry, "accum_time", "Temps cumulé", DPS_ACCUM_TIME)
 
+    @property
+    def native_value(self):
+        val = (self.coordinator.data or {}).get(self._dps_id)
+        return int(val) if val is not None else None
+
 
 class LastTimeSensor(ValveBaseSensor):
     _attr_device_class  = SensorDeviceClass.DURATION
@@ -98,6 +103,11 @@ class LastTimeSensor(ValveBaseSensor):
     def __init__(self, coordinator, entry):
         super().__init__(coordinator, entry, "last_time", "Dernier usage", DPS_LAST_TIME)
 
+    @property
+    def native_value(self):
+        val = (self.coordinator.data or {}).get(self._dps_id)
+        return int(val) if val is not None else None
+
 
 class CountdownSensor(ValveBaseSensor):
     _attr_device_class  = SensorDeviceClass.DURATION
@@ -106,3 +116,8 @@ class CountdownSensor(ValveBaseSensor):
 
     def __init__(self, coordinator, entry):
         super().__init__(coordinator, entry, "countdown", "Countdown", DPS_COUNTDOWN)
+
+    @property
+    def native_value(self):
+        val = (self.coordinator.data or {}).get(self._dps_id)
+        return int(val) if val is not None else None
