@@ -34,7 +34,9 @@ class TuyaValveLocalConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             elif not user_input[CONF_LOCAL_KEY].strip():
                 errors[CONF_LOCAL_KEY] = "local_key_required"
             else:
-                await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
+                node_id = user_input.get(CONF_NODE_ID, "").strip()
+                unique = f"{user_input[CONF_DEVICE_ID]}_{node_id}" if node_id else user_input[CONF_DEVICE_ID]
+                await self.async_set_unique_id(unique)
                 self._abort_if_unique_id_configured()
                 return self.async_create_entry(
                     title=user_input.get(CONF_NAME, "Vanne arrosage"),
